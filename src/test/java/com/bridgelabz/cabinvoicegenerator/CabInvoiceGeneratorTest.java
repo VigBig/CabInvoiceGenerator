@@ -24,14 +24,25 @@ public class CabInvoiceGeneratorTest {
         Assert.assertEquals("Calculate Fare passed",5,fare,0.0);
     }
 
+//    @Test
+//    public void testCalculateFareForMultipleRides(){
+//        CabInvoiceGenerator cabInvoiceGenerator=new CabInvoiceGenerator();
+//        Ride[] rides={new Ride(2.0,5),
+//                new Ride(0.1,1)
+//        };
+//        double fare=cabInvoiceGenerator.calculateFare(rides);
+//        Assert.assertEquals("fare",30,fare,0.0);
+//    }
+
     @Test
-    public void testCalculateFareForMultipleRides(){
-        CabInvoiceGenerator cabInvoiceGenerator=new CabInvoiceGenerator();
+    public void testCalculateFareForMultipleRidesShouldReturnInvoiceSummary(){
         Ride[] rides={new Ride(2.0,5),
                 new Ride(0.1,1)
         };
-        double fare=cabInvoiceGenerator.calculateFare(rides);
-        Assert.assertEquals("fare",30,fare,0.0);
+        CabInvoiceGenerator cabInvoiceGenerator=new CabInvoiceGenerator();
+        InvoiceSummary invoiceSummary=cabInvoiceGenerator.calculateFare(rides);
+        InvoiceSummary expected_invoiceSummary=new InvoiceSummary(2,30.0);
+        Assert.assertEquals(expected_invoiceSummary,invoiceSummary);
     }
 
 }
